@@ -13,9 +13,8 @@ on:
     branches:
       - develop
     types:
-      - assigned
       - opened
-      - review_requested
+      - synchronize
       - reopened
 
 
