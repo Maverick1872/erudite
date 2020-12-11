@@ -1,7 +1,7 @@
 ---
-name: Release template
+name: Release
 about: This template provides a basic structure defining a release and tracking progress towards it.
-title: [RELEASE]: vX.X.X
+title: "[RELEASE]: vX.X.X"
 labels: release
 ---
 

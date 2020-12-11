@@ -1,7 +1,7 @@
 ---
-name: Core Feature template
+name: Erudite Core Feature 
 about: This template provides a basic structure for an issue to track a feature implementation.
-title: [FEATURE]: 
+title: "[FEATURE]:" 
 label: feature, erudite-core
 ---
 

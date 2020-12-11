@@ -1,7 +1,7 @@
 ---
-name: Frontend Feature template
+name: Erudite Frontend Feature
 about: This template provides a basic structure for an issue to track a feature implementation.
-title: [FEATURE]: 
+title: "[FEATURE]:" 
 label: feature, erudite-frontend
 ---
 
