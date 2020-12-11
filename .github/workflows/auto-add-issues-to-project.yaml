@@ -1,0 +1,31 @@
+name: Groomed issues
+
+on:
+  issues:
+    types:
+      - labeled
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+
+    name: Add groomed issues to appropriate project
+    steps:
+      - name: Assign refined issues to erudite-core project
+        uses: srggrs/assign-one-project-github-action@1.2.0
+        if: |
+          contains(github.event.issue.labels.*.name, 'erudite-core')
+          && contains(github.event.issue.labels.*.name, 'groomed')
+        with:
+          project: 'https://github.com/Maverick1872/erudite-core/projects/1'
+
+      - name: Assign refined issues to erudite-core project
+        uses: srggrs/assign-one-project-github-action@1.2.0
+        if: |
+          contains(github.event.issue.labels.*.name, 'erudite-frontend')
+          && contains(github.event.issue.labels.*.name, 'groomed')
+        with:
+          project: 'https://github.com/Maverick1872/erudite-core/projects/2'
