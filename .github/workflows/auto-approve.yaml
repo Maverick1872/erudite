@@ -6,8 +6,10 @@ on:
 jobs:
   auto-approve:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: hmarr/auto-approve-action@v2.0.0
+      - name: Auto-Approve PRs
+        uses: hmarr/auto-approve-action@v2.0.0
         if: github.actor == 'Maverick1872'
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
