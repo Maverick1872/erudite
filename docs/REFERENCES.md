@@ -1,5 +1,9 @@
 # Reference Materials
 
+## Table of Contents
+- [Book Metadata APIs](#book-metadata-apis)
+- [Spring Web](SPRING_HELP.md)
+
 ## Book Metadata APIs
 * Goodreads - 12/08/2020 is being deprecated apparently
 * Google - meh api so given a single test book request
