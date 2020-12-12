@@ -12,8 +12,9 @@ on:
   pull_request:
     branches:
       - develop
+      - master
     types:
-      - opened
+      - ready_for_review
       - synchronize
       - reopened
 
