@@ -9,7 +9,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  assign_one_project:
+  assign_to_project:
     runs-on: ubuntu-latest
 
     name: Add groomed issues to appropriate project
