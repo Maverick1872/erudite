@@ -1,22 +1,22 @@
-#Erudite eBook Library Manager
-##Purpose
+# Erudite eBook Library Manager
+## Purpose
 Allow a convenient location to self-host an eBook library manager. Additionally, it will allow users to define
 custom functionality (plugins) to hook into specific events within the application
 
-##Available application hooks
+## Available application hooks
 * pre-upload
 * pre-fetch-metadata
 * post-fetch-metadata
 * post-upload
 
-##Plugins
-####Supported Languages
+## Plugins
+#### Supported Languages
 [Possible implementation](https://stackoverflow.com/questions/11490140/implementing-plugins-in-a-java-application)
 * Java
 * Javascript
 * Python
 
-##Book Metadata APIs
+## Book Metadata APIs
 * Goodreads - 12/08/2020 is being deprecated apparently
 * Google - meh api so given a single test book request
 * ISBNdb - 10$ minimum
