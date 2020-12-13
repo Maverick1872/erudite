@@ -51,7 +51,18 @@ task buildFrontend(type: NpmTask) {
     args = ['run', 'build']
 }
 
-//task deployFrontendProd (dependsOn: buildFrontend, type: Copy) {
-//    from "${project.projectDir}/frontend/build"
-//    into "${project.build.directory}/classes/public"
-//}
+processResources {
+    from ('frontend/build/') {
+        into 'public'
+    }
+}
+
+compileJava() {
+    dependsOn buildFrontend
+}
+
+clean {
+    delete "${project.projectDir}/frontend/build"
+    delete "${project.projectDir}/frontend/node_modules"
+    delete "${project.projectDir}/frontend/.eslintcache"
+}
