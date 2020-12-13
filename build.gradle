@@ -5,8 +5,19 @@ plugins {
     id 'java'
 }
 
+node {
+    // Should a version of Node.JS be downloaded if one is not installed.
+    download = false
+    // The npm command executed by the npmInstall task
+    npmInstallCommand = "install"
+
+    // The Node.js project directory location
+    // This is where the package.json file and node_modules directory are located
+    nodeModulesDir = file("${project.projectDir}/frontend")
+}
+
 group = 'com.jonathonterry'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '11'
 
 configurations {
@@ -30,3 +41,17 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task npmInstallProd(type: NpmTask) {
+    args = ['ci', '--production']
+}
+
+task buildFrontend(type: NpmTask) {
+    dependsOn npmInstallProd
+    args = ['run', 'build']
+}
+
+//task deployFrontendProd (dependsOn: buildFrontend, type: Copy) {
+//    from "${project.projectDir}/frontend/build"
+//    into "${project.build.directory}/classes/public"
+//}
