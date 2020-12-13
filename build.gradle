@@ -38,17 +38,23 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-test {
-    useJUnitPlatform()
-}
-
 task npmInstallProd(type: NpmTask) {
     args = ['ci', '--production']
+}
+
+task testFrontend(type: NpmTask) {
+    dependsOn npmInstall
+    args = ['run', 'test', '--', '--watchAll=false']
 }
 
 task buildFrontend(type: NpmTask) {
     dependsOn npmInstallProd
     args = ['run', 'build']
+}
+
+test {
+    dependsOn testFrontend
+    useJUnitPlatform()
 }
 
 processResources {
