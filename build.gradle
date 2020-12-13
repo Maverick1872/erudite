@@ -1,11 +1,23 @@
 plugins {
     id 'org.springframework.boot' version '2.4.1'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'com.github.node-gradle.node' version '2.2.4'
     id 'java'
 }
 
+node {
+    // Should a version of Node.JS be downloaded if one is not installed.
+    download = false
+    // The npm command executed by the npmInstall task
+    npmInstallCommand = "install"
+
+    // The Node.js project directory location
+    // This is where the package.json file and node_modules directory are located
+    nodeModulesDir = file("${project.projectDir}/frontend")
+}
+
 group = 'com.jonathonterry'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '11'
 
 configurations {
@@ -26,6 +38,37 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+task npmInstallProd(type: NpmTask) {
+    args = ['ci', '--production']
+}
+
+task testFrontend(type: NpmTask) {
+    dependsOn npmInstall
+    args = ['run', 'test', '--', '--watchAll=false']
+}
+
+task buildFrontend(type: NpmTask) {
+    dependsOn npmInstallProd
+    args = ['run', 'build']
+}
+
 test {
+    dependsOn testFrontend
     useJUnitPlatform()
+}
+
+processResources {
+    from ('frontend/build/') {
+        into 'public'
+    }
+}
+
+compileJava() {
+    dependsOn buildFrontend
+}
+
+clean {
+    delete "${project.projectDir}/frontend/build"
+    delete "${project.projectDir}/frontend/node_modules"
+    delete "${project.projectDir}/frontend/.eslintcache"
 }
